@@ -4,18 +4,25 @@ class UserController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
-	 *
+	 * user
 	 * @return Response
 	 */
 	public function index()
 	{
-		$users = array();
-		for($i=1;$i < 4; $i ++) {
-			$user = new Stdclass;
-			$user->email = "user{$i}@test.com";
-			$user->password = Hash::make("MyPass{$i}");
-			$users[$i] = $user;
-		}
+//	  $users = DB::table('users')->where('id', 1)>get();
+//	  $users = DB::table('users')->where('id', 1)->orWhere('id', 2)->get();
+//    dd(DB::table('users')->count());
+//    dd(DB::table('users')->lists('email', 'id'));
+//    $users = DB::table('users')->where('id', '>', 1)->orderBy('email', 'desc')->take(2)->skip(0)->get();
+    $users = DB::table('users')->join('posts', 'users.id', '=', 'posts.user_id')->get();
+
+		$data = array(
+		 	'email' => 'someone@email.com',
+		 	'password' => Hash::make('some123')
+		);
+//    DB::table('users')->insert($data);
+//    DB::table('users')->where('id', 4)->update($data);
+    DB::table('users')->where('id', 4)->delete();
 		return View::make('user.index', compact('users'));
 	}
 
@@ -50,10 +57,9 @@ class UserController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$user = new Stdclass;
-		$user->email = "user@test.com";
-		$user->password = Hash::make("MyPass");
-        return View::make('user.show', compact('user'));
+		$user = DB::table('users')->where(array('email' => 'rana@shana.com', 'id' => 1))->first();
+    dd(DB::getQueryLog());
+    return View::make('user.show', compact('user'));
 	}
 
 
