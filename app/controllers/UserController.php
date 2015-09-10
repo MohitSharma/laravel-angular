@@ -16,13 +16,14 @@ class UserController extends \BaseController {
 //    $users = DB::table('users')->where('id', '>', 1)->orderBy('email', 'desc')->take(2)->skip(0)->get();
     $users = DB::table('users')->join('posts', 'users.id', '=', 'posts.user_id')->get();
 
-		$data = array(
-		 	'email' => 'someone@email.com',
-		 	'password' => Hash::make('some123')
-		);
-//    DB::table('users')->insert($data);
+//		$data = array(
+//                        'user_id' => 1,
+//		 	'title' => 'Post 3',
+//		 	'body' => 'Test Post 3'
+//		);
+//   DB::table('posts')->insert($data);
 //    DB::table('users')->where('id', 4)->update($data);
-    DB::table('users')->where('id', 4)->delete();
+    //DB::table('users')->where('id', 4)->delete();
 		return View::make('user.index', compact('users'));
 	}
 
@@ -57,8 +58,7 @@ class UserController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$user = DB::table('users')->where(array('email' => 'rana@shana.com', 'id' => 1))->first();
-    dd(DB::getQueryLog());
+		$user = DB::table('users')->where(array('id' => $id))->first();
     return View::make('user.show', compact('user'));
 	}
 

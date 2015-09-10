@@ -1,1 +1,0 @@
-<?php echo "Post ID:" . $id; ?>
