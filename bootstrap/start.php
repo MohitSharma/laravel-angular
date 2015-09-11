@@ -25,9 +25,10 @@ $app = new Illuminate\Foundation\Application;
 */
 $env = $app->detectEnvironment(array(
 
-	'local' => array('homestead', 'mohit-Macmini'),
+	'local' => array('homestead', 'admins-OptiPlex-3020'),
     
     //'admins-OptiPlex-3020'
+    //'mohit-Macmini'
 
 ));
 

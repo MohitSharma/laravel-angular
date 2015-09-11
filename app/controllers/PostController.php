@@ -2,7 +2,7 @@
 
 class PostController extends BaseController {
     public function listing() {
-        $posts = Post::all();
+        $posts = Post::with('user')->get();
         return View::make('post.listing', compact('posts'));
     }
     public function single($id) {

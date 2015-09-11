@@ -9,5 +9,4 @@
 
 @section('sidebar')
     @parent
-    <h2> index Bar </h2>
 @show
